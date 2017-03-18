@@ -190,6 +190,12 @@ class JacksonTypeTranslatorTest {
         assertEquals("Foo", translateClass<Foo<*>>().type.name)
     }
 
+    @Test
+    fun javaslangListShouldNotCauseStackOverflow() {
+        translateClass<javaslang.collection.List<String>>()
+    }
+
+
     private fun translateType(type: JavaType): ApiType {
         val classes = JavaModel()
         val api = ApiDefinition()
